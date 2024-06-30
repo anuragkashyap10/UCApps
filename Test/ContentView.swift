@@ -74,7 +74,7 @@ struct ContentView: View {
             ZStack {
                 Circle()
                     .fill(.blue)
-                    .frame(width: 105, height: 105)
+                    .frame(width: 90, height: 90)
                     .shadow(color: .gray.opacity(0.5), radius: 10, x: 7, y: 7)
                 Image(systemName: "plus")
                     .foregroundColor(.white)
@@ -83,7 +83,6 @@ struct ContentView: View {
         }
     }
     
-
     struct PageOneView: View {
         let onNextButtonTapped: () -> Void
         @Binding var count: Int
@@ -92,7 +91,8 @@ struct ContentView: View {
             .onTapGesture {
                     onNextButtonTapped()
             }
-            Spacer()
+            .padding(10)
+    
             ScrollView {
                 VStack(alignment: .leading) {
                     ForEach(0..<100) {
@@ -262,7 +262,7 @@ struct ContentView: View {
                     .font(.system(size: 60))
                 Button ("Back") {
                     onNextButtonTapped()
-                    count += 0
+                    count = 0
                 }
             }
         }
