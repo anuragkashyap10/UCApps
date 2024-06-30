@@ -54,6 +54,7 @@ struct ContentView: View {
                 }
                 .font(.system(size: 100))
                 .padding(.horizontal)
+                
             }
             .padding()
             .background(.blue)
