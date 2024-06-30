@@ -37,8 +37,6 @@ struct ContentView: View {
                 PageSevenView(onNextButtonTapped: { currentPage += 1 },count: $count)
             case 8:
                 PageEightView(onNextButtonTapped: { currentPage += 1 },count: $count)
-            case 9:
-                PageNineView(onNextButtonTapped: { currentPage += 1 },count: $count)
             default:
                 EmptyView()
             }
@@ -398,23 +396,14 @@ struct ContentView: View {
             @Binding var count: Int
             var body: some View {
                 VStack {
-                    Text("Thank you for your response")
-                        .font(.system(size: 36))
-                        .padding(40)
-                    Text("Your score is \(count)")
-                        .font(.system(size: 60))
-                    Button ("Back") {
-                        onNextButtonTapped()
-                        count += 0
-                    }
-                }
-            }
-            
-            struct ContentView_Previews: PreviewProvider {
-                static var previews: some View {
-                    ContentView()
                 }
             }
         }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
     }
 }
