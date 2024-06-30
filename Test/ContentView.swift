@@ -9,7 +9,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var currentPage: Int = 1
     @State public var count: Int = 0
-    @MainActor @preconcurrency
+    // @MainActor @preconcurrency
     
     var body: some View {
         NavigationView {
@@ -19,13 +19,10 @@ struct ContentView: View {
                 PageOneView(onNextButtonTapped: { currentPage += 1 }, count: $count)
             case 2:
                 PageTwoView(onNextButtonTapped: { currentPage += 1 }, count: $count)
-                
             case 3:
                 PageThreeView(onNextButtonTapped: { currentPage += 1 }, count: $count)
-                
             case 4:
                 PageFourView(onNextButtonTapped: { currentPage += 1 }, count: $count)
-                
             case 5:
                 PageFiveView(onNextButtonTapped: { currentPage += 1 }, count: $count)
             case 6:
@@ -42,8 +39,6 @@ struct ContentView: View {
             navigationTitle("Page \(currentPage)")
         }
     }
-    
-    
     struct MyButton: View {
       let label: String
       let action: () -> Void
@@ -68,7 +63,6 @@ struct ContentView: View {
             .frame(maxWidth: .infinity)
         }
     }
-    
     struct RoundButton: View {
         var body: some View {
             ZStack {
@@ -82,7 +76,6 @@ struct ContentView: View {
             }
         }
     }
-    
     struct PageOneView: View {
         let onNextButtonTapped: () -> Void
         @Binding var count: Int
@@ -101,9 +94,7 @@ struct ContentView: View {
                 }
             }
         }
-        
     }
-    
     struct PageTwoView: View {
         let onNextButtonTapped: () -> Void
         @Binding var count: Int
@@ -130,7 +121,6 @@ struct ContentView: View {
             }
         }
     }
-    
     struct PageThreeView: View {
         let onNextButtonTapped: () -> Void
         @Binding var count: Int
@@ -158,8 +148,7 @@ struct ContentView: View {
             }
         }
     }
-    
-    struct PageFourView: View {
+     struct PageFourView: View {
         let onNextButtonTapped: () -> Void
         @Binding var count: Int
         
@@ -183,7 +172,6 @@ struct ContentView: View {
             }
         }
     }
-    
     struct PageFiveView: View {
         let onNextButtonTapped: () -> Void
         @Binding var count: Int
@@ -249,7 +237,6 @@ struct ContentView: View {
             }
         }
     }
-    
     struct PageEightView: View {
         let onNextButtonTapped: () -> Void
         @Binding var count: Int
@@ -268,7 +255,6 @@ struct ContentView: View {
         }
     }
 }
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
