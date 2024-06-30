@@ -37,6 +37,8 @@ struct ContentView: View {
                 PageSevenView(onNextButtonTapped: { currentPage += 1 },count: $count)
             case 8:
                 PageEightView(onNextButtonTapped: { currentPage += 1 },count: $count)
+            case 9:
+                PageNineView(onNextButtonTapped: { currentPage += 1 },count:$count)
             default:
                 EmptyView()
             }
@@ -73,7 +75,6 @@ struct ContentView: View {
         }
         
     }
-    
     
     
     struct PageTwoView: View {
@@ -391,12 +392,17 @@ struct ContentView: View {
                 }
             }
         }
-        
-        struct PageNineView: View {
-            let onNextButtonTapped: () -> Void
-            @Binding var count: Int
-            var body: some View {
-                VStack {
+    }
+    
+    struct PageNineView: View {
+        let onNextButtonTapped: () -> Void
+        @Binding var count: Int
+        var body: some View {
+            VStack {
+              Text("test")
+                Button ("Back") {
+                    onNextButtonTapped()
+                    count += 0
                 }
             }
         }
