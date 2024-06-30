@@ -15,11 +15,8 @@ struct ContentView: View {
         NavigationView {
             
             switch currentPage {
-                
-                
             case 1:
                 PageOneView(onNextButtonTapped: { currentPage += 1 }, count: $count)
-                
             case 2:
                 PageTwoView(onNextButtonTapped: { currentPage += 1 }, count: $count)
                 
@@ -38,36 +35,67 @@ struct ContentView: View {
             case 8:
                 PageEightView(onNextButtonTapped: { currentPage += 1 },count: $count)
             case 9:
-                PageNineView(onNextButtonTapped: { currentPage += 1 },count:$count)
+                PageOneView(onNextButtonTapped: { currentPage = 1 },count:$count)
             default:
                 EmptyView()
             }
             navigationTitle("Page \(currentPage)")
         }
     }
+    
+    
+    struct MyButton: View {
+      let label: String
+      let action: () -> Void
+
+      var body: some View {
+        Button(label) {
+          action()
+        }
+        .buttonStyle(MyButtonStyle())
+      }
+    }
+    struct MyButtonStyle: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            configuration.label
+            .controlSize(.large)
+            .font(.system(size: 20))
+            .frame(width: 200)
+            .padding(40)
+            .foregroundColor(.white)
+            .background(.blue)
+            .cornerRadius(30)
+            .frame(maxWidth: .infinity)
+        }
+    }
+    
+    struct RoundButton: View {
+        var body: some View {
+            ZStack {
+                Circle()
+                    .fill(.blue)
+                    .frame(width: 105, height: 105)
+                    .shadow(color: .gray.opacity(0.5), radius: 10, x: 7, y: 7)
+                Image(systemName: "plus")
+                    .foregroundColor(.white)
+                    .font(.system(size: 50, weight: .semibold))
+            }
+        }
+    }
+    
+
     struct PageOneView: View {
         let onNextButtonTapped: () -> Void
         @Binding var count: Int
         var body: some View {
-            VStack {
-                Button("⨁") {
+            RoundButton()
+            .onTapGesture {
                     onNextButtonTapped()
-                    count+=0
-                }
-                .font(.system(size: 100))
-                .padding(.horizontal)
-                
             }
-            .padding()
-            .background(.blue)
-            .foregroundColor(.white)
-            .cornerRadius(10)
-            .controlSize(.extraLarge)
-            
-            
+            Spacer()
             ScrollView {
                 VStack(alignment: .leading) {
-                    ForEach(0..<50) {
+                    ForEach(0..<100) {
                         Text("Your score is \($0)")
                     }
                 }
@@ -76,7 +104,6 @@ struct ContentView: View {
         
     }
     
-    
     struct PageTwoView: View {
         let onNextButtonTapped: () -> Void
         @Binding var count: Int
@@ -84,54 +111,22 @@ struct ContentView: View {
             VStack {
                 Text("#stools in 24 hours")
                     .font(.system(size: 36))
-                Button("0-2 stools") {
+                MyButton(label:"0-2 stools") {
                     onNextButtonTapped()
                     count += 0
-                    
-                }      .frame(maxWidth: .infinity)
-                    .controlSize(.large)
-                    .font(.system(size: 36))
-                    .padding(40)
-                    .foregroundColor(.white)
-                    .background(.orange)
-                    .cornerRadius(10)
-                    .frame(maxWidth: .infinity)
-                
-                
-                Button("3-5 stools") {
+                }
+                MyButton(label:"3-5 stools") {
                     onNextButtonTapped()
                     count += 5
-                }     .frame(maxWidth: .infinity)
-                    .controlSize(.large)
-                    .font(.system(size: 36))
-                    .padding(40)
-                    .foregroundColor(.white)
-                    .background(.orange)
-                    .cornerRadius(10)
-                    .controlSize(.large)
-                
-                Button("6-8 stools") {
+                }
+                MyButton(label:"6-8 stools") {
                     onNextButtonTapped()
                     count += 10
-                } .frame(maxWidth: .infinity)
-                    .controlSize(.large)
-                    .font(.system(size: 36))
-                    .padding(40)
-                    .foregroundColor(.white)
-                    .background(.orange)
-                    .cornerRadius(10)
-                    .controlSize(.large)
-                Button("8+ stools") {
+                }
+                MyButton(label:"8+ stools") {
                     onNextButtonTapped()
                     count += 15
-                }   .frame(maxWidth: .infinity)
-                    .controlSize(.large)
-                    .font(.system(size: 36))
-                    .padding(40)
-                    .foregroundColor(.white)
-                    .background(.orange)
-                    .cornerRadius(10)
-                    .controlSize(.large)
+                }
             }
         }
     }
@@ -144,55 +139,22 @@ struct ContentView: View {
             VStack {
                 Text("Rectal Bleeding")
                     .font(.system(size: 36))
-                Button("None") {
+                MyButton(label:"None") {
                     onNextButtonTapped()
                     count += 0
                 }
-                .frame(maxWidth: .infinity)
-                .controlSize(.large)
-                .font(.system(size: 36))
-                .padding(40)
-                .foregroundColor(.white)
-                .background(.orange)
-                .cornerRadius(10)
-                .frame(maxWidth: .infinity)
-                
-                Button("Small amount only, in less than 50% of stools") {
+                MyButton(label:"Small amount only, in less than 50% of stools") {
                     onNextButtonTapped()
                     count += 10
                 }
-                .frame(maxWidth: .infinity)
-                .controlSize(.large)
-                .font(.system(size: 36))
-                .padding(40)
-                .foregroundColor(.white)
-                .background(.orange)
-                .cornerRadius(10)
-                .controlSize(.large)
-                Button("Small amount with most stools") {
+                MyButton(label: "Small amount with most stools") {
                     onNextButtonTapped()
                     count += 20
                 }
-                .frame(maxWidth: .infinity)
-                .controlSize(.large)
-                .font(.system(size: 36))
-                .padding(40)
-                .foregroundColor(.white)
-                .background(.orange)
-                .cornerRadius(10)
-                .controlSize(.large)
-                Button("Large amount (50% of the stool content)") {
+                MyButton(label:"Large amount (50% of the stool content)") {
                     onNextButtonTapped()
                     count += 30
                 }
-                .frame(maxWidth: .infinity)
-                .controlSize(.large)
-                .font(.system(size: 36))
-                .padding(40)
-                .foregroundColor(.white)
-                .background(.orange)
-                .cornerRadius(10)
-                .controlSize(.large)
             }
         }
     }
@@ -205,43 +167,19 @@ struct ContentView: View {
             VStack {
                 Text("Abdominal Pain")
                     .font(.system(size: 36))
-                Button("None") {
+                MyButton(label: "None") {
                     onNextButtonTapped()
                     count += 0
                 }
-                .frame(maxWidth: .infinity)
-                .controlSize(.large)
-                .font(.system(size: 36))
-                .padding(40)
-                .foregroundColor(.white)
-                .background(.orange)
-                .cornerRadius(10)
-                .frame(maxWidth: .infinity)
                 
-                Button("Pain can be ignored") {
+                MyButton(label: "Pain can be ignored") {
                     onNextButtonTapped()
                     count += 5
                 }
-                .frame(maxWidth: .infinity)
-                .controlSize(.large)
-                .font(.system(size: 36))
-                .padding(40)
-                .foregroundColor(.white)
-                .background(.orange)
-                .cornerRadius(10)
-                .controlSize(.large)
-                Button("Pain cannot be ignored") {
+                MyButton(label: "Pain cannot be ignored") {
                     onNextButtonTapped()
                     count += 10
                 }
-                .frame(maxWidth: .infinity)
-                .controlSize(.large)
-                .font(.system(size: 36))
-                .padding(40)
-                .foregroundColor(.white)
-                .background(.orange)
-                .cornerRadius(10)
-                .controlSize(.large)
             }
         }
     }
@@ -253,43 +191,19 @@ struct ContentView: View {
             VStack {
                 Text("Stool Consistency")
                     .font(.system(size: 36))
-                Button("Formed") {
+                MyButton(label:"Formed") {
                     onNextButtonTapped()
                     count += 0
                 }
-                .frame(maxWidth: .infinity)
-                .controlSize(.large)
-                .font(.system(size: 36))
-                .padding(40)
-                .foregroundColor(.white)
-                .background(.orange)
-                .cornerRadius(10)
-                .frame(maxWidth: .infinity)
                 
-                Button("Partially formed") {
+                MyButton(label:"Partially formed") {
                     onNextButtonTapped()
                     count += 5
                 }
-                .frame(maxWidth: .infinity)
-                .controlSize(.large)
-                .font(.system(size: 36))
-                .padding(40)
-                .foregroundColor(.white)
-                .background(.orange)
-                .cornerRadius(10)
-                .controlSize(.large)
-                Button("Not formed") {
+                MyButton(label:"Not formed") {
                     onNextButtonTapped()
                     count += 10
                 }
-                .frame(maxWidth: .infinity)
-                .controlSize(.large)
-                .font(.system(size: 36))
-                .padding(40)
-                .foregroundColor(.white)
-                .background(.orange)
-                .cornerRadius(10)
-                .controlSize(.large)
             }
         }
     }
@@ -300,43 +214,19 @@ struct ContentView: View {
             VStack {
                 Text("Energy Level")
                     .font(.system(size: 36))
-                Button("No limitation of energy") {
+                MyButton(label:"No limitation of energy") {
                     onNextButtonTapped()
                     count += 0
                 }
-                .frame(maxWidth: .infinity)
-                .controlSize(.large)
-                .font(.system(size: 36))
-                .padding(40)
-                .foregroundColor(.white)
-                .background(.orange)
-                .cornerRadius(10)
-                .frame(maxWidth: .infinity)
                 
-                Button("A little bit tired") {
+                MyButton(label:"A little bit tired") {
                     onNextButtonTapped()
                     count += 5
                 }
-                .frame(maxWidth: .infinity)
-                .controlSize(.large)
-                .font(.system(size: 36))
-                .padding(40)
-                .foregroundColor(.white)
-                .background(.orange)
-                .cornerRadius(10)
-                .controlSize(.large)
-                Button("No energy at all") {
+                MyButton(label:"No energy at all") {
                     onNextButtonTapped()
                     count += 10
                 }
-                .frame(maxWidth: .infinity)
-                .controlSize(.large)
-                .font(.system(size: 36))
-                .padding()
-                .foregroundColor(.white)
-                .background(.orange)
-                .cornerRadius(10)
-                .controlSize(.large)
             }
         }
     }
@@ -347,31 +237,15 @@ struct ContentView: View {
             VStack {
                 Text("Nocturnal Stools")
                     .font(.system(size: 36))
-                Button("No nocturnal stools") {
+                MyButton(label:"No nocturnal stools") {
                     onNextButtonTapped()
                     count += 0
                 }
-                .frame(maxWidth: .infinity)
-                .controlSize(.large)
-                .font(.system(size: 36))
-                .padding(40)
-                .foregroundColor(.white)
-                .background(.orange)
-                .cornerRadius(10)
-                .frame(maxWidth: .infinity)
                 
-                Button("Yes") {
+                MyButton(label:"Yes") {
                     onNextButtonTapped()
                     count += 10
                 }
-                .frame(maxWidth: .infinity)
-                .controlSize(.large)
-                .font(.system(size: 36))
-                .padding(40)
-                .foregroundColor(.white)
-                .background(.orange)
-                .cornerRadius(10)
-                .controlSize(.large)
             }
         }
     }
@@ -386,20 +260,6 @@ struct ContentView: View {
                     .padding(40)
                 Text("Your score is \(count)")
                     .font(.system(size: 60))
-                Button ("Back") {
-                    onNextButtonTapped()
-                    count += 0
-                }
-            }
-        }
-    }
-    
-    struct PageNineView: View {
-        let onNextButtonTapped: () -> Void
-        @Binding var count: Int
-        var body: some View {
-            VStack {
-              Text("test")
                 Button ("Back") {
                     onNextButtonTapped()
                     count += 0
