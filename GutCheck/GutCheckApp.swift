@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 @main
-struct TestApp: App {
+struct GutCheckApp: App {
     
     var body: some Scene {
         WindowGroup {
