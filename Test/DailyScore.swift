@@ -10,6 +10,7 @@ import SwiftData
 
 @Model
 class DailyScore {
+    var date: Date
     var pucaiScore: Int
     var numStools: String
     var rectalBleeding: String
@@ -18,7 +19,8 @@ class DailyScore {
     var energy: String
     var nocturnal: String
     
-    init(score: Int, numStools: String, rectalBleeding: String, pain: String, stool:String, energy:String, nocturnal:String) {
+    init(date: Date, score: Int, numStools: String, rectalBleeding: String, pain: String, stool:String, energy:String, nocturnal:String) {
+        self.date = date
         self.pucaiScore = score
         self.numStools = numStools
         self.rectalBleeding = rectalBleeding

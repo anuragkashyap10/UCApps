@@ -1,13 +1,12 @@
-//
 //  ContentView.swift
 //  Test
-//
 //  Created by Anurag Kashyap on 6/17/24.
 //
 import SwiftUI
 import SwiftData
 
 class UserProgress: ObservableObject {
+    @Published var date = " "
     @Published var pucaiScore = 0
     @Published var numStools = ""
     @Published var rectalBleeding = ""
@@ -16,11 +15,11 @@ class UserProgress: ObservableObject {
     @Published var energy = ""
     @Published var nocturnal = ""
 }
-
 struct ContentView: View {
     @State private var currentPage: Int = 1
     @StateObject var progress = UserProgress()
-    @Environment(\.modelContext) var modelContext
+    @Environment(\
+        .modelContext) var modelContext
     @Query var scores :[DailyScore]
     
     var body: some View {
@@ -42,20 +41,18 @@ struct ContentView: View {
             case 7:
                 PageSevenView(onNextButtonTapped: { currentPage += 1 },progress:progress)
             case 8:
-                PageEightView(onNextButtonTapped: { currentPage += 1 },progress:progress)
-                    .onAppear {
-                        let dailyScore = DailyScore(score: progress.pucaiScore, numStools: progress.numStools, rectalBleeding: progress.rectalBleeding, pain: progress.pain, stool: progress.stool, energy: progress.energy, nocturnal: progress.nocturnal)
-                        modelContext.insert(dailyScore)
-                    }
-            case 9:
                 PageOneView(onNextButtonTapped: { currentPage = 1 },progress:progress,dailyScores:scores)
+                    .onAppear {
+                        let dailyScore = DailyScore(date: Date(), score: progress.pucaiScore, numStools: progress.numStools, rectalBleeding: progress.rectalBleeding, pain: progress.pain, stool: progress.stool, energy: progress.energy, nocturnal: progress.nocturnal)
+                        modelContext.insert(dailyScore)
+                        progress.pucaiScore = 0
+                    }
             default:
                 EmptyView()
             }
             navigationTitle("Page \(currentPage)")
         }
     }
-    
     
     struct MyButton: View {
       let label: String
@@ -87,7 +84,7 @@ struct ContentView: View {
                 Circle()
                     .fill(.blue)
                     .frame(width: 90, height: 90)
-                    .shadow(color: .gray.opacity(0.5), radius: 10, x: 7, y: 7)
+                    //.shadow(color: .gray.opacity(0.5), radius: 10, x: 7, y: 7)
                 Image(systemName: "plus")
                     .foregroundColor(.white)
                     .font(.system(size: 50, weight: .semibold))
@@ -98,31 +95,28 @@ struct ContentView: View {
         let onNextButtonTapped: () -> Void
         @ObservedObject var progress: UserProgress
         var dailyScores :[DailyScore]
-        
-
+    
         var body: some View {
             RoundButton()
             .onTapGesture {
                     onNextButtonTapped()
             }
             .padding(10)
-            
-    
-            ScrollView {
-                VStack(alignment: .leading) {
-                    ForEach(dailyScores) { dailyScore in
-                        VStack(alignment: .leading) {
-                            Text("The score is: \(dailyScore.pucaiScore)")
-                                .font(.headline)
-                            Text(dailyScore.nocturnal)
-                            Text(dailyScore.numStools)
-                            Text(dailyScore.pain)
-                            Text(dailyScore.rectalBleeding)
-                            Text(dailyScore.stool)
-                                
+            VStack {
+                Text("Your Score History").font(.headline)
+
+                List {
+                    if !dailyScores.isEmpty {
+                        ForEach(dailyScores.reversed()) { dailyScore in
+                            Text("\(dailyScore.date.formatted(.dateTime.day().month().year())) - \(dailyScore.pucaiScore)")
                         }
+                    } else {
+                        Text("No scores found")
                     }
                 }
+                .listStyle(.plain)
+                .listStyle(InsetGroupedListStyle())
+                .listRowSeparatorTint(.red)
             }
         }
     }
@@ -165,7 +159,7 @@ struct ContentView: View {
         
         var body: some View {
             VStack {
-                Text("Rectal Bleeding")
+                Text("Blood in Stools")
                     .font(.system(size: 36))
                 MyButton(label:"None") {
                     onNextButtonTapped()
@@ -186,12 +180,12 @@ struct ContentView: View {
                     onNextButtonTapped()
                     progress.pucaiScore += 30
                     progress.rectalBleeding = "Large amount (50% of the stool content)"
+                    
                 }
             }
         }
     }
-    
-     struct PageFourView: View {
+    struct PageFourView: View {
         let onNextButtonTapped: () -> Void
         
         @ObservedObject var progress: UserProgress
@@ -205,13 +199,12 @@ struct ContentView: View {
                     progress.pucaiScore += 0
                     progress.pain = "No Pain"
                 }
-                
                 MyButton(label: "Pain can be ignored") {
                     onNextButtonTapped()
                     progress.pucaiScore += 5
                     progress.pain = "Pain can be ignored"
                 }
-                MyButton(label: "Pain cannot be ignored") {
+                MyButton(label: "Just too much pain") {
                     onNextButtonTapped()
                     progress.pucaiScore += 10
                     progress.pain = "Pain Cannot be ignored"
@@ -233,7 +226,6 @@ struct ContentView: View {
                     progress.pucaiScore += 0
                     progress.stool = "Formed"
                 }
-                
                 MyButton(label:"Partially formed") {
                     onNextButtonTapped()
                     progress.pucaiScore += 5
@@ -249,10 +241,7 @@ struct ContentView: View {
     }
     struct PageSixView: View {
         let onNextButtonTapped: () -> Void
-        
         @ObservedObject var progress: UserProgress
-
-
         var body: some View {
             VStack {
                 Text("Energy Level")
@@ -262,11 +251,10 @@ struct ContentView: View {
                     progress.pucaiScore += 0
                     progress.energy = "No Limitation of energy"
                 }
-                
                 MyButton(label:"A little bit tired") {
                     onNextButtonTapped()
                     progress.pucaiScore += 5
-                    progress.energy = "A littlbe bit tired"
+                    progress.energy = "A little bit tired"
                 }
                 MyButton(label:"No energy at all") {
                     onNextButtonTapped()
@@ -278,56 +266,20 @@ struct ContentView: View {
     }
     struct PageSevenView: View {
         let onNextButtonTapped: () -> Void
-        
         @ObservedObject var progress: UserProgress
-
         var body: some View {
             VStack {
-                Text("Nocturnal Stools")
+                Text("Stools at Night")
                     .font(.system(size: 36))
-                MyButton(label:"No nocturnal stools") {
+                MyButton(label:"No") {
                     onNextButtonTapped()
                     progress.pucaiScore += 0
                     progress.nocturnal = "No"
                 }
-                
                 MyButton(label:"Yes") {
                     onNextButtonTapped()
                     progress.pucaiScore += 10
                     progress.nocturnal = "Yes"
-                }
-            }
-        }
-    }
-    struct PageEightView: View {
-        let onNextButtonTapped: () -> Void
-        
-        @ObservedObject var progress: UserProgress
-
-        var body: some View {
-            VStack {
-                Text("Thank you for your response")
-                    .font(.system(size: 36))
-                    .padding(40)
-                Text("#Stools: \(progress.numStools)")
-                    .font(.system(size: 15))
-                Text("Rectal Bleeding: \(progress.rectalBleeding)")
-                    .font(.system(size: 15))
-                Text("Your abdonimnal pain is \(progress.pain)")
-                    .font(.system(size: 15))
-                Text("Stool Consistency: \(progress.stool)")
-                    .font(.system(size: 15))
-                Text("Your energy level is \(progress.energy)")
-                    .font(.system(size: 15))
-                Text("Nocturnal Stools: \(progress.nocturnal)")
-                    .font(.system(size: 15))
-
-                Text("Your score is \(progress.pucaiScore)")
-                    .font(.system(size: 60))
-                
-                Button ("Back") {
-                    onNextButtonTapped()
-                    progress.pucaiScore = 0
                 }
             }
         }
@@ -338,8 +290,6 @@ struct ContentView_Previews: PreviewProvider {
         do {
                 let config = ModelConfiguration(isStoredInMemoryOnly: true)
                 let container = try ModelContainer(for: DailyScore.self, configurations: config)
-
-                let example = DailyScore(score: 10, numStools: "", rectalBleeding: "", pain: "", stool: "", energy: "", nocturnal: "")
                 return ContentView()
                     .modelContainer(container)
             } catch {
