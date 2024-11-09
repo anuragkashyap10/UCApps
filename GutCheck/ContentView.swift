@@ -52,30 +52,33 @@ struct ContentView: View {
             }
             navigationTitle("Page \(currentPage)")
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     struct MyButton: View {
       let label: String
       let action: () -> Void
 
-      var body: some View {
-        Button(label) {
-          action()
+        var body: some View {
+            Button(label) {
+                action()
+            }
+            .buttonStyle(MyButtonStyle(isIpad: UIDevice.current.userInterfaceIdiom == .pad))
         }
-        .buttonStyle(MyButtonStyle())
-      }
     }
     struct MyButtonStyle: ButtonStyle {
+        let isIpad: Bool
+            
         func makeBody(configuration: Configuration) -> some View {
             configuration.label
-            .controlSize(.large)
-            .font(.system(size: 20))
-            .frame(width: 200)
-            .padding(40)
-            .foregroundColor(.white)
-            .background(.blue)
-            .cornerRadius(30)
-            .frame(maxWidth: .infinity)
+                .controlSize(.large)
+                .font(.system(size: isIpad ? 50 : 20))
+                .frame(width: isIpad ? 650 : 200)
+                .padding(isIpad ? 50 : 40)
+                .foregroundColor(.white)
+                .background(.blue)
+                .cornerRadius(30)
+                .frame(maxWidth: .infinity)
         }
     }
     struct RoundButton: View {
@@ -97,12 +100,13 @@ struct ContentView: View {
         var dailyScores :[DailyScore]
     
         var body: some View {
-            RoundButton()
-            .onTapGesture {
-                    onNextButtonTapped()
-            }
-            .padding(10)
             VStack {
+                RoundButton()
+                .onTapGesture {
+                        onNextButtonTapped()
+                }
+                .padding(10)
+
                 Text("Your Score History").font(.headline)
 
                 List {
