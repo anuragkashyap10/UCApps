@@ -16,7 +16,7 @@
 
 /* Begin PBXFileReference section */
 		952567602C5877310070A2D0 /* DailyScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyScore.swift; sourceTree = "<group>"; };
-		95CF77F02C213FB50010EBA2 /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		95CF77F02C213FB50010EBA2 /* GutCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GutCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95CF77F32C213FB50010EBA2 /* GutCheckApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GutCheckApp.swift; sourceTree = "<group>"; };
 		95CF77F52C213FB50010EBA2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		95CF77F72C213FB70010EBA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -45,7 +45,7 @@
 		95CF77F12C213FB50010EBA2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				95CF77F02C213FB50010EBA2 /* Test.app */,
+				95CF77F02C213FB50010EBA2 /* GutCheck.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -73,9 +73,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		95CF77EF2C213FB50010EBA2 /* Test */ = {
+		95CF77EF2C213FB50010EBA2 /* GutCheck */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 95CF77FE2C213FB70010EBA2 /* Build configuration list for PBXNativeTarget "Test" */;
+			buildConfigurationList = 95CF77FE2C213FB70010EBA2 /* Build configuration list for PBXNativeTarget "GutCheck" */;
 			buildPhases = (
 				95CF77EC2C213FB50010EBA2 /* Sources */,
 				95CF77ED2C213FB50010EBA2 /* Frameworks */,
@@ -85,9 +85,9 @@
 			);
 			dependencies = (
 			);
-			name = Test;
+			name = GutCheck;
 			productName = Test;
-			productReference = 95CF77F02C213FB50010EBA2 /* Test.app */;
+			productReference = 95CF77F02C213FB50010EBA2 /* GutCheck.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -118,7 +118,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				95CF77EF2C213FB50010EBA2 /* Test */,
+				95CF77EF2C213FB50010EBA2 /* GutCheck */,
 			);
 		};
 /* End PBXProject section */
@@ -288,7 +288,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ucapps.gutcheck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -319,7 +319,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ucapps.gutcheck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -342,7 +342,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		95CF77FE2C213FB70010EBA2 /* Build configuration list for PBXNativeTarget "Test" */ = {
+		95CF77FE2C213FB70010EBA2 /* Build configuration list for PBXNativeTarget "GutCheck" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				95CF77FF2C213FB70010EBA2 /* Debug */,
