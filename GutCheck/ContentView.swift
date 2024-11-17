@@ -106,6 +106,11 @@ struct ContentView: View {
                         onNextButtonTapped()
                 }
                 .padding(10)
+                HStack {
+                    Image(systemName: "info.circle")
+                        .foregroundColor(.blue)
+                    Link("PUCAI Score", destination: URL(string: "https://www.pediatriconcall.com/calculators/pediatric-ulcerative-colitis-activity-index")!)
+                }
 
                 Text("Your Score History").font(.headline)
 
