@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9503A6A52D25F247007BC919 /* Untitled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9503A6A42D25F241007BC919 /* Untitled.swift */; };
 		952567612C5877320070A2D0 /* DailyScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952567602C5877310070A2D0 /* DailyScore.swift */; };
+		959B471C2CF5638300800C02 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 959B471B2CF5638300800C02 /* Launch Screen.storyboard */; };
 		95CF77F42C213FB50010EBA2 /* GutCheckApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CF77F32C213FB50010EBA2 /* GutCheckApp.swift */; };
 		95CF77F62C213FB50010EBA2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CF77F52C213FB50010EBA2 /* ContentView.swift */; };
 		95CF77F82C213FB70010EBA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95CF77F72C213FB70010EBA2 /* Assets.xcassets */; };
@@ -15,7 +17,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9503A6A42D25F241007BC919 /* Untitled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Untitled.swift; sourceTree = "<group>"; };
 		952567602C5877310070A2D0 /* DailyScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyScore.swift; sourceTree = "<group>"; };
+		959B47182CF167FF00800C02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		959B471B2CF5638300800C02 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		95CF77F02C213FB50010EBA2 /* GutCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GutCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95CF77F32C213FB50010EBA2 /* GutCheckApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GutCheckApp.swift; sourceTree = "<group>"; };
 		95CF77F52C213FB50010EBA2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,11 +58,14 @@
 		95CF77F22C213FB50010EBA2 /* GutCheck */ = {
 			isa = PBXGroup;
 			children = (
+				9503A6A42D25F241007BC919 /* Untitled.swift */,
+				959B47182CF167FF00800C02 /* Info.plist */,
 				95CF77F32C213FB50010EBA2 /* GutCheckApp.swift */,
 				95CF77F52C213FB50010EBA2 /* ContentView.swift */,
 				952567602C5877310070A2D0 /* DailyScore.swift */,
 				95CF77F72C213FB70010EBA2 /* Assets.xcassets */,
 				95CF77F92C213FB70010EBA2 /* Preview Content */,
+				959B471B2CF5638300800C02 /* Launch Screen.storyboard */,
 			);
 			path = GutCheck;
 			sourceTree = "<group>";
@@ -128,6 +136,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				959B471C2CF5638300800C02 /* Launch Screen.storyboard in Resources */,
 				95CF77FB2C213FB70010EBA2 /* Preview Assets.xcassets in Resources */,
 				95CF77F82C213FB70010EBA2 /* Assets.xcassets in Resources */,
 			);
@@ -142,6 +151,7 @@
 			files = (
 				95CF77F62C213FB50010EBA2 /* ContentView.swift in Sources */,
 				95CF77F42C213FB50010EBA2 /* GutCheckApp.swift in Sources */,
+				9503A6A52D25F247007BC919 /* Untitled.swift in Sources */,
 				952567612C5877320070A2D0 /* DailyScore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,16 +289,17 @@
 				DEVELOPMENT_TEAM = 9G2GPAQJDY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GutCheck/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "GutCheck ";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ucapps.gutcheck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -310,16 +321,17 @@
 				DEVELOPMENT_TEAM = 9G2GPAQJDY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GutCheck/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "GutCheck ";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ucapps.gutcheck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
