@@ -296,7 +296,7 @@ struct ContentView: View {
                         Text("Developed by:")
                         Text("Anurag Kashyap")
                     }
-                    Text("Version 1.3")
+                    Text("Version 1.4")
                     
                         .padding(.bottom)
                     
