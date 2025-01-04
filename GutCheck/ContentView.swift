@@ -296,7 +296,7 @@ struct ContentView: View {
                         Text("Developed by:")
                         Text("Anurag Kashyap")
                     }
-                    Text("Version 1.4")
+                    Text("Version 1.5")
                     
                         .padding(.bottom)
                     
@@ -507,8 +507,8 @@ struct ContentView: View {
         var body: some View {
             VStack {
                 VStack{
-                    Text("Your PUCAI score is").font(.system(size: 72))
-                    Text("\(progress.pucaiScore)").font(.system(size: 144))
+                    Text("Your PUCAI score is").font(.system(size: 36))
+                    Text("\(progress.pucaiScore)").font(.system(size: 72))
                 }
                 Button(action: {
                     
@@ -516,7 +516,7 @@ struct ContentView: View {
                 }) {
                     HStack {
                         Image(systemName: "chevron.left")
-                        Text("Back to Home").font(.system(size: 72))
+                        Text("Back to Home").font(.system(size: 36))
                     }
                 }
             }
