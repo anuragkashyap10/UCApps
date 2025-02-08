@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9503A6A52D25F247007BC919 /* Untitled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9503A6A42D25F241007BC919 /* Untitled.swift */; };
+		9503A6A52D25F247007BC919 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9503A6A42D25F241007BC919 /* Colors.swift */; };
 		952567612C5877320070A2D0 /* DailyScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952567602C5877310070A2D0 /* DailyScore.swift */; };
 		959B471C2CF5638300800C02 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 959B471B2CF5638300800C02 /* Launch Screen.storyboard */; };
 		95CF77F42C213FB50010EBA2 /* GutCheckApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CF77F32C213FB50010EBA2 /* GutCheckApp.swift */; };
@@ -17,7 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9503A6A42D25F241007BC919 /* Untitled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Untitled.swift; sourceTree = "<group>"; };
+		9503A6A42D25F241007BC919 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		952567602C5877310070A2D0 /* DailyScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyScore.swift; sourceTree = "<group>"; };
 		959B47182CF167FF00800C02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		959B471B2CF5638300800C02 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -58,14 +58,14 @@
 		95CF77F22C213FB50010EBA2 /* GutCheck */ = {
 			isa = PBXGroup;
 			children = (
-				9503A6A42D25F241007BC919 /* Untitled.swift */,
+				9503A6A42D25F241007BC919 /* Colors.swift */,
 				959B47182CF167FF00800C02 /* Info.plist */,
 				95CF77F32C213FB50010EBA2 /* GutCheckApp.swift */,
 				95CF77F52C213FB50010EBA2 /* ContentView.swift */,
 				952567602C5877310070A2D0 /* DailyScore.swift */,
 				95CF77F72C213FB70010EBA2 /* Assets.xcassets */,
-				95CF77F92C213FB70010EBA2 /* Preview Content */,
 				959B471B2CF5638300800C02 /* Launch Screen.storyboard */,
+				95CF77F92C213FB70010EBA2 /* Preview Content */,
 			);
 			path = GutCheck;
 			sourceTree = "<group>";
@@ -151,7 +151,7 @@
 			files = (
 				95CF77F62C213FB50010EBA2 /* ContentView.swift in Sources */,
 				95CF77F42C213FB50010EBA2 /* GutCheckApp.swift in Sources */,
-				9503A6A52D25F247007BC919 /* Untitled.swift in Sources */,
+				9503A6A52D25F247007BC919 /* Colors.swift in Sources */,
 				952567612C5877320070A2D0 /* DailyScore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,7 +299,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ucapps.gutcheck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -331,7 +331,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ucapps.gutcheck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

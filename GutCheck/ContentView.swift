@@ -14,12 +14,13 @@ class UserProgress: ObservableObject {
     @Published var energy = ""
     @Published var nocturnal = ""
 }
+
 struct ContentView: View {
     @State private var currentPage: Int = 0
     @StateObject var progress = UserProgress()
     @Environment(\
         .modelContext) var modelContext
-    @Query var scores :[DailyScore]
+    @Query(sort:\DailyScore.date, order:.reverse) var scores :[DailyScore]
     var body: some View {
         NavigationView {
             
@@ -43,9 +44,9 @@ struct ContentView: View {
             case 7:
                 PageSevenView(onNextButtonTapped: { currentPage += 1 },progress:progress)
             case 8:
-                    PageEightView(onNextButtonTapped: { pageNumber in
-                      currentPage = pageNumber
-                    }, progress: progress)
+                PageEightView(onNextButtonTapped: { pageNumber in
+                    currentPage = pageNumber
+                }, progress: progress)
             case 9:
                 PageHomeView(onNextButtonTapped: { pageNumber in
                     currentPage = pageNumber
@@ -102,7 +103,7 @@ struct ContentView: View {
     struct PageHomeView: View {
         let onNextButtonTapped: (Int) -> Void
         @ObservedObject var progress: UserProgress
-        @Query private var scores: [DailyScore]
+        @Query(sort:\DailyScore.date, order:.reverse) private var scores: [DailyScore]
         
         struct NavigationItem: Identifiable, Hashable {
             var id = UUID()
@@ -137,7 +138,7 @@ struct ContentView: View {
                         }
                         .foregroundColor(.myColor).font(.custom("Lalezar", size: 50))
                     }
-                    
+                    .padding(-10)
                     List(navigationItems) { item in
                         NavigationLink(value: item) {
                             Label(item.title, systemImage: item.icon)
@@ -154,9 +155,9 @@ struct ContentView: View {
                 .navigationDestination(for: NavigationItem.self) { item in
                     switch item.menu {
                     case .charts:
-                        HistoryView(onNextButtonTapped: { onNextButtonTapped(1) }, progress: progress, dailyScores: self.scores)
+                        PageOneView(onNextButtonTapped: { onNextButtonTapped(2) }, progress: progress, dailyScores: self.scores)
                     case .score:
-                        CompassView(onNextButtonTapped: { onNextButtonTapped(2) }, progress: progress)
+                        PageTwoView(onNextButtonTapped: { onNextButtonTapped(3) }, progress: progress)
                     case .about:
                         AboutView()
                     case .privacy:
@@ -166,77 +167,6 @@ struct ContentView: View {
             }
         }
     }
-    
-    struct HistoryView: View {
-        let onNextButtonTapped: () -> Void
-        @ObservedObject var progress: UserProgress
-        let dailyScores :[DailyScore]
-        var body: some View {
-            VStack {
-                RoundButton()
-                    .onTapGesture {
-                        onNextButtonTapped()
-                    }
-                    .padding(10)
-                HStack {
-                    Image(systemName: "info.circle")
-                        .foregroundColor(.blue)
-                    Link("PUCAI Score", destination: URL(string: "https://www.pediatriconcall.com/calculators/pediatric-ulcerative-colitis-activity-index")!)
-                }
-                
-                Text("Your Score History").font(.headline)
-                
-                List {
-                    if !dailyScores.isEmpty {
-                        ForEach(dailyScores.reversed()) { dailyScore in
-                            Text("\(dailyScore.date.formatted(.dateTime.day().month().year())) - \(dailyScore.pucaiScore)")
-                        }
-                    } else {
-                        Text("No scores found")
-                    }
-                }
-                .listStyle(.plain)
-                .listStyle(InsetGroupedListStyle())
-                .listRowSeparatorTint(.red)
-            }
-            
-        }
-    }
-    
-    struct CompassView: View {
-        let onNextButtonTapped: () -> Void
-        @ObservedObject var progress: UserProgress
-        
-        var body: some View {
-            VStack {
-                Text("#stools in 24 hours")
-                    .font(.system(size: 36))
-                MyButton(label:"0-2 stools") {
-                    progress.pucaiScore += 0
-                    progress.numStools = "0-2"
-                    onNextButtonTapped()
-                    
-                }
-                MyButton(label:"3-5 stools") {
-                    progress.pucaiScore += 5
-                    progress.numStools = "3-5"
-                    onNextButtonTapped()
-                }
-                MyButton(label:"6-8 stools") {
-                    progress.pucaiScore += 10
-                    progress.numStools = "6-8"
-                    onNextButtonTapped()
-                }
-                MyButton(label:"8+ stools") {
-                    progress.pucaiScore += 15
-                    progress.numStools = "8+"
-                    onNextButtonTapped()
-                }
-            }
-        }
-    }
-    
-    
     struct AboutView: View {
         var body: some View {
             ScrollView { // Enable scrolling if content is too large
@@ -248,7 +178,7 @@ struct ContentView: View {
                         Text("Developed by:")
                         Text("Anurag Kashyap")
                     }
-                    Text("Version 1.3")
+                    Text("Version 1.5")
                     
                         .padding(.bottom)
                     
@@ -257,28 +187,16 @@ struct ContentView: View {
                         .padding(.bottom)
                     Text("How it works: ")
                         .font(.body)
-                        
+                    let pucaiScoreText = "• Daily PUCAI Tracker: Answer a few quick questions based on the Pediatric Ulcerative Colitis Activity Index (PUCAI) to assess your condition. PUCAI score calculation is based on numbers from this site - [PUCAI Score](https://www.pediatriconcall.com/calculators/pediatric-ulcerative-colitis-activity-index)"
+                    Text(.init(pucaiScoreText))
+                   Text("• Child-Friendly Interface: Easy enough for even a child to use, with clear language and engaging visuals")
+                    Text("• Get a clear history of your PUCAI scores in reverse chronological order, which serve as a data-driven tool for parents and care providers")
+                             
+                    Text("• Monitor Your Progress: Track your symptoms over time to see if your condition is improving, stabilizing, or worsening.")
+                    Text("• Peace of Mind at Your Fingertips: Gut Check empowers you to take an active role in managing your UC. Download today and experience the differences")
                     
-                        Text("• Daily PUCAI Tracker: Answer a few quick questions based on the Pediatric Ulcerative Colitis Activity Index (PUCAI) to assess your condition. PUCAI score calculation is based on numbers from this site - ")
-                        Link("PUCAI Score", destination: URL(string: "https://www.pediatriconcall.com/calculators/pediatric-ulcerative-colitis-activity-index")!)
                     
-                    let listItems =
-                    [
-                     "Child-Friendly Interface: Easy enough for even a child to use, with clear language and engaging visuals",
-                     "Get a clear history of your PUCAI scores in reverse chronological order, which serve as a data-driven tool for parents and care providers",
-                     "Monitor Your Progress: Track your symptoms over time to see if your condition is improving, stabilizing, or worsening.",
-                     "Peace of Mind at Your Fingertips: Gut Check empowers you to take an active role in managing your UC. Download today and experience the differences"
-                 ]
                     
-                    VStack {
-                        ForEach(listItems, id: \.self) { item in
-                            HStack (alignment: .top) {
-                                Text("•") // Unicode bullet point character
-                                Text(item)
-                                    .padding(.bottom)
-                            }
-                        }
-                    }
                 }
                 .padding()
             }
@@ -326,7 +244,7 @@ struct ContentView: View {
                 Text("Your Score History").font(.headline)
                 List {
                     if !dailyScores.isEmpty {
-                        ForEach(dailyScores.reversed()) { dailyScore in
+                        ForEach(dailyScores) { dailyScore in
                             Text("\(dailyScore.date.formatted(.dateTime.day().month().year())) - \(dailyScore.pucaiScore)")
                         }
                     } else {
@@ -522,6 +440,7 @@ struct ContentView: View {
             }
         }
     }
+    
     struct ContentView_Previews: PreviewProvider {
         static var previews: some View {
             do {
